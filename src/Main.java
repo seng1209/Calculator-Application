@@ -2,11 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 
 public class Main extends JFrame implements ActionListener {
 
-    private JButton btnAdd, btnSub, btnMulti, btnDiv, btnDivP, btnClear;
+    private JButton addButton, subButton, multiButton, divButton, percentButton, clearButton;
     private JTextField txtFirstNumber, txtSecondNumber, txtResult;
     private JLabel lblFirstNumber, lblSecondNumber, lblResult;
 
@@ -27,19 +26,19 @@ public class Main extends JFrame implements ActionListener {
         txtResult = new JTextField();
         txtResult.setEditable(false);
 
-        btnAdd = new JButton("+");
-        btnSub = new JButton("-");
-        btnMulti = new JButton("*");
-        btnDiv = new JButton("/");
-        btnDivP = new JButton("%");
-        btnClear = new JButton("Clear");
+        addButton = new JButton("+");
+        subButton = new JButton("-");
+        multiButton = new JButton("*");
+        divButton = new JButton("/");
+        percentButton = new JButton("%");
+        clearButton = new JButton("Clear");
 
-        btnAdd.addActionListener(this);
-        btnSub.addActionListener(this);
-        btnMulti.addActionListener(this);
-        btnDiv.addActionListener(this);
-        btnDivP.addActionListener(this);
-        btnClear.addActionListener(this);
+        addButton.addActionListener(this);
+        subButton.addActionListener(this);
+        multiButton.addActionListener(this);
+        divButton.addActionListener(this);
+        percentButton.addActionListener(this);
+        clearButton.addActionListener(this);
 
         layout.add(lblFirstNumber);
         layout.add(txtFirstNumber);
@@ -47,12 +46,12 @@ public class Main extends JFrame implements ActionListener {
         layout.add(txtSecondNumber);
         layout.add(lblResult);
         layout.add(txtResult);
-        layout.add(btnAdd);
-        layout.add(btnSub);
-        layout.add(btnMulti);
-        layout.add(btnDiv);
-        layout.add(btnDivP);
-        layout.add(btnClear);
+        layout.add(addButton);
+        layout.add(subButton);
+        layout.add(multiButton);
+        layout.add(divButton);
+        layout.add(percentButton);
+        layout.add(clearButton);
 
         this.add(layout);
         this.setSize(400,300);
@@ -71,19 +70,63 @@ public class Main extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        firstNumber = Double.parseDouble(txtFirstNumber.getText());
-        secondNumber = Double.parseDouble(txtSecondNumber.getText());
-        if (e.getSource() == btnClear)
+
+        if (e.getSource() == clearButton)
             this.clear();
-        if (e.getSource() == btnAdd)
+        if (e.getSource() == addButton){
+            try{
+                firstNumber = Double.parseDouble(txtFirstNumber.getText());
+                secondNumber = Double.parseDouble(txtSecondNumber.getText());
                 txtResult.setText(String.valueOf(firstNumber + secondNumber));
-        if (e.getSource() == btnSub)
+            }catch (NumberFormatException exception){
+                JOptionPane.showMessageDialog(null, "Error : " + exception.getMessage());
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error : " + ex.getMessage());
+            }
+        }
+        if (e.getSource() == subButton){
+            try{
+                firstNumber = Double.parseDouble(txtFirstNumber.getText());
+                secondNumber = Double.parseDouble(txtSecondNumber.getText());
                 txtResult.setText(String.valueOf(firstNumber - secondNumber));
-        if (e.getSource() == btnMulti)
+            }catch (NumberFormatException exception){
+                JOptionPane.showMessageDialog(null, "Error : " + exception.getMessage());
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error : " + ex.getMessage());
+            }
+        }
+        if (e.getSource() == multiButton){
+            try{
+                firstNumber = Double.parseDouble(txtFirstNumber.getText());
+                secondNumber = Double.parseDouble(txtSecondNumber.getText());
                 txtResult.setText(String.valueOf(firstNumber * secondNumber));
-        if (e.getSource() == btnDiv)
+            }catch (NumberFormatException exception){
+                JOptionPane.showMessageDialog(null, "Error : " + exception.getMessage());
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error : " + ex.getMessage());
+            }
+        }
+        if (e.getSource() == divButton){
+            try{
+                firstNumber = Double.parseDouble(txtFirstNumber.getText());
+                secondNumber = Double.parseDouble(txtSecondNumber.getText());
                 txtResult.setText(String.valueOf(firstNumber / secondNumber));
-        if (e.getSource() == btnDivP)
+            }catch (NumberFormatException exception){
+                JOptionPane.showMessageDialog(null, "Error : " + exception.getMessage());
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error : " + ex.getMessage());
+            }
+        }
+        if (e.getSource() == percentButton) {
+            try{
+                firstNumber = Double.parseDouble(txtFirstNumber.getText());
+                secondNumber = Double.parseDouble(txtSecondNumber.getText());
                 txtResult.setText(String.valueOf(firstNumber % secondNumber));
+            }catch (NumberFormatException exception){
+                JOptionPane.showMessageDialog(null, "Error : " + exception.getMessage());
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error : " + ex.getMessage());
+            }
+        }
     }
 }
